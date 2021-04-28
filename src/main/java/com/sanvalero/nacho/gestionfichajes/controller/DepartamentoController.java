@@ -2,21 +2,14 @@ package com.sanvalero.nacho.gestionfichajes.controller;
 
 
 import com.sanvalero.nacho.gestionfichajes.domain.Departamento;
+import com.sanvalero.nacho.gestionfichajes.exception.DepartamentoNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.service.DepartamentoService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
@@ -29,22 +22,58 @@ public class DepartamentoController {
     @Autowired
     private DepartamentoService departamentoService;
 
-    @Operation(summary = "Obtiene el listado de departamentos")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Listado de departamentos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Departamento.class)))),
-    })
+
+    //Listado de departamentos por nombre
     @GetMapping(value = "/departamentos", produces = "application/json")
     public ResponseEntity<Set<Departamento>> getDepartamento(@RequestParam(value = "nombre", defaultValue = "") String nombredep) {
-        logger.info("inicio getDepartamento");
+        logger.info("inicio obtención de departamentos");
         Set<Departamento> departamentos = null;
         if (nombredep.isEmpty())
             departamentos = departamentoService.findAll();
         else
             departamentos = departamentoService.findByName(nombredep);
 
-        logger.info("fin getProducts");
+        logger.info("fin listado departamentos");
         return new ResponseEntity<>(departamentos, HttpStatus.OK);
+    }
+
+    //Listado de departamentos por id
+    @GetMapping(value = "/departamentos/{id}", produces = "application/json")
+    public ResponseEntity<Departamento> getDepartamento(@PathVariable long idDepartamento) {
+        Departamento departamento = departamentoService.findById(idDepartamento)
+                .orElseThrow(() -> new DepartamentoNotFoundException(idDepartamento));
+
+        return new ResponseEntity<>(departamento, HttpStatus.OK);
+    }
+
+    //Añadir un departamento
+    @PostMapping(value = "/departamentos", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Departamento> addProduct(@RequestBody Departamento departamento) {
+        Departamento departamentoadd = departamentoService.addDepartamento(departamento);
+        return new ResponseEntity<>(departamentoadd, HttpStatus.CREATED);
+    }
+
+    //Modificar un departamento
+    @PutMapping(value = "/departamentos/{id}", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Departamento> modifyProduct(@PathVariable long idDepartamento, @RequestBody Departamento nuevoDepartamento) {
+        Departamento departamento = departamentoService.modifyDepartamento(idDepartamento,nuevoDepartamento);
+        return new ResponseEntity<>(departamento, HttpStatus.OK);
+    }
+
+    //Eliminar un departamento
+    @DeleteMapping(value = "/departamentos/{id}", produces = "application/json")
+    public ResponseEntity<Response> deleteProduct(@PathVariable long idDepartamento) {
+        departamentoService.deleteDepartamento(idDepartamento);
+        return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(DepartamentoNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Response> handleException(DepartamentoNotFoundException pnfe) {
+        Response response = Response.errorResponse(Response.NOT_FOUND, pnfe.getMessage());
+        logger.error(pnfe.getMessage(), pnfe);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }
