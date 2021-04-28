@@ -1,6 +1,7 @@
 package com.sanvalero.nacho.gestionfichajes.service;
 
 import com.sanvalero.nacho.gestionfichajes.domain.Departamento;
+import com.sanvalero.nacho.gestionfichajes.domain.dto.DepartamentoDTO;
 import com.sanvalero.nacho.gestionfichajes.exception.DepartamentoNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
