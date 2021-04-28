@@ -9,5 +9,6 @@ import java.util.Set;
 @Repository
 public interface DepartamentoRepository extends CrudRepository<Departamento, Long> {
     Set<Departamento> findAll();
+    Set<Departamento> findbyName(String nombre);
     Set<Departamento> findbyEmpresa(String empresa);
 }

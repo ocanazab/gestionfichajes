@@ -27,6 +27,9 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     }
 
     @Override
+    public Set<Departamento> findByName(String name) {return departamentoRepository.findbyName(name);}
+
+    @Override
     public Departamento addDepartamento(Departamento departamento) {
         return departamentoRepository.save(departamento);
     }

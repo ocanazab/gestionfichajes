@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -34,13 +35,13 @@ public class DepartamentoController {
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Departamento.class)))),
     })
     @GetMapping(value = "/departamentos", produces = "application/json")
-    public ResponseEntity<Set<Departamento>> getDepartamento(@RequestParam(value = "idDepartamento", defaultValue = "") long id) {
+    public ResponseEntity<Set<Departamento>> getDepartamento(@RequestParam(value = "nombre", defaultValue = "") String nombredep) {
         logger.info("inicio getDepartamento");
         Set<Departamento> departamentos = null;
-        if (id==0)
+        if (nombredep.isEmpty())
             departamentos = departamentoService.findAll();
         else
-            departamentos = departamentoService.findById(id);
+            departamentos = departamentoService.findByName(nombredep);
 
         logger.info("fin getProducts");
         return new ResponseEntity<>(departamentos, HttpStatus.OK);
