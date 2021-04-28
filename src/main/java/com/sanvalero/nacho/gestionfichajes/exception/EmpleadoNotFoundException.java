@@ -14,6 +14,6 @@ public class EmpleadoNotFoundException extends RuntimeException {
     }
 
     public EmpleadoNotFoundException(long id) {
-        super("Product not found: " + id);
+        super("Empleado not found: " + id);
     }
 }
