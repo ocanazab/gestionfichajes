@@ -35,7 +35,12 @@ public class DispositivosServiceImpl implements DispositivosService {
     public Dispositivos modifyDispositivo(long idDispositivo, Dispositivos nuevoDispositivo) {
         Dispositivos dispositivo = dispositivosRepository.findById(idDispositivo)
                 .orElseThrow(() -> new DispositivosNotFoundException(idDispositivo));
-        nuevoDispositivo.setIdDispositivo(nuevoDispositivo.getIdDispositivo());
+        nuevoDispositivo.setNombre(nuevoDispositivo.getNombre());
+        nuevoDispositivo.setActivo(nuevoDispositivo.getActivo());
+        nuevoDispositivo.setComentarios(nuevoDispositivo.getComentarios());
+        nuevoDispositivo.setFechaAlta(nuevoDispositivo.getFechaAlta());
+        nuevoDispositivo.setUbicacion(nuevoDispositivo.getUbicacion());
+        nuevoDispositivo.setComentarios(nuevoDispositivo.getComentarios());
         return dispositivosRepository.save(nuevoDispositivo);
     }
 

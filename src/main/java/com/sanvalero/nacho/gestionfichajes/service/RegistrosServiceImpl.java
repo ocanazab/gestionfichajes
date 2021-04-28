@@ -35,7 +35,11 @@ public class RegistrosServiceImpl implements RegistrosService{
     public Registros modifyRegistro(long idRegistro, Registros nuevoRegistro) {
         Registros registros = registrosRepository.findById(idRegistro)
                 .orElseThrow(() -> new EmpleadoNotFoundException(idRegistro));
+        nuevoRegistro.setDescripcion(nuevoRegistro.getDescripcion());
         nuevoRegistro.setCodigoRegistro(nuevoRegistro.getCodigoRegistro());
+        nuevoRegistro.setFechaCreacion(nuevoRegistro.getFechaCreacion());
+        nuevoRegistro.setObservaciones(nuevoRegistro.getObservaciones());
+        nuevoRegistro.setObservaciones(nuevoRegistro.getObservaciones());
         return registrosRepository.save(nuevoRegistro);
     }
 

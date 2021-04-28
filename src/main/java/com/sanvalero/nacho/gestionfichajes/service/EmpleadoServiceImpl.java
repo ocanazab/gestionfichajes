@@ -34,7 +34,14 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     public Empleado modifyEmpleado(long idEmpleado, Empleado nuevoEmpleado) {
         Empleado empleado = empleadoRepository.findById(idEmpleado)
                 .orElseThrow(() -> new EmpleadoNotFoundException(idEmpleado));
-        nuevoEmpleado.setIdEmpleado(nuevoEmpleado.getIdEmpleado());
+        nuevoEmpleado.setIdDepartamento(nuevoEmpleado.getIdDepartamento());
+        nuevoEmpleado.setActivo(nuevoEmpleado.getActivo());
+        nuevoEmpleado.setNombre(nuevoEmpleado.getNombre());
+        nuevoEmpleado.setApellidos(nuevoEmpleado.getApellidos());
+        nuevoEmpleado.setTelefono(nuevoEmpleado.getTelefono());
+        nuevoEmpleado.setFechaAlta(nuevoEmpleado.getFechaAlta());
+        nuevoEmpleado.setIdDepartamento(nuevoEmpleado.getIdDepartamento());
+        nuevoEmpleado.setActivo(nuevoEmpleado.getActivo());
         return empleadoRepository.save(nuevoEmpleado);
     }
 

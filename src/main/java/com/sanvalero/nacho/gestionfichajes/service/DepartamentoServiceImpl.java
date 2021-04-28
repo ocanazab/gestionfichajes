@@ -34,7 +34,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     public Departamento modifyDepartamento(long id, Departamento nuevoDepartamento) {
         Departamento departamento = departamentoRepository.findById(id)
                 .orElseThrow(() -> new DepartamentoNotFoundException(id));
-        nuevoDepartamento.setIdDepartamento(nuevoDepartamento.getIdDepartamento());
+        nuevoDepartamento.setNombre(nuevoDepartamento.getNombre());
+        nuevoDepartamento.setActivo(nuevoDepartamento.getActivo());
+        nuevoDepartamento.setDescripcion(nuevoDepartamento.getDescripcion());
+        nuevoDepartamento.setEmpresa(nuevoDepartamento.getEmpresa());
+        nuevoDepartamento.setFechaCreacion(nuevoDepartamento.getFechaCreacion());
         return departamentoRepository.save(nuevoDepartamento);
     }
 
