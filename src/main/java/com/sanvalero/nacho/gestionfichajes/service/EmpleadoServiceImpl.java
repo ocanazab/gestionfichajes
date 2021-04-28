@@ -1,7 +1,6 @@
 package com.sanvalero.nacho.gestionfichajes.service;
 
 import com.sanvalero.nacho.gestionfichajes.domain.Empleado;
-import com.sanvalero.nacho.gestionfichajes.exception.DepartamentoNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.exception.EmpleadoNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     @Override
     public void deleteEmpleado(long idEmpleado) {
         empleadoRepository.findById(idEmpleado)
-                .orElseThrow(() -> new DepartamentoNotFoundException(idEmpleado));
+                .orElseThrow(() -> new EmpleadoNotFoundException(idEmpleado));
         empleadoRepository.deleteById(idEmpleado);
     }
 }

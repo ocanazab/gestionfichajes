@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Entity(name="registros")
 public class Registros {
     //Clave primaria
     @Id
