@@ -27,6 +27,14 @@ public class DispositivosServiceImpl implements DispositivosService {
     }
 
     @Override
+    public Set<Dispositivos> findbyNombre(String nombre){
+        return dispositivosRepository.findbyNombre(nombre);
+    }
+
+    @Override
+    public Set<Dispositivos> findbyUbicacion(String ubicacion){ return dispositivosRepository.findbyUbicacion(ubicacion);}
+
+    @Override
     public Dispositivos addDispositivo(Dispositivos dispositivo) {
         return dispositivosRepository.save(dispositivo);
     }

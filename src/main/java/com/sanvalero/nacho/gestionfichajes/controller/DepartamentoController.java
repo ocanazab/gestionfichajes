@@ -70,9 +70,9 @@ public class DepartamentoController {
     @ExceptionHandler(DepartamentoNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<Response> handleException(DepartamentoNotFoundException pnfe) {
-        Response response = Response.errorResponse(Response.NOT_FOUND, pnfe.getMessage());
-        logger.error(pnfe.getMessage(), pnfe);
+    public ResponseEntity<Response> handleException(DepartamentoNotFoundException dnfe) {
+        Response response = Response.errorResponse(Response.NOT_FOUND, dnfe.getMessage());
+        logger.error(dnfe.getMessage(), dnfe);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
