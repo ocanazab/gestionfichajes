@@ -26,6 +26,15 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     }
 
     @Override
+    public Set<Empleado> findByDepartamento(String departamento) {return empleadoRepository.findByDepartamento(departamento); }
+
+    @Override
+    public Set<Empleado> findByNombre(String nombre) {return empleadoRepository.findByNombre(nombre);}
+
+    @Override
+    public Set<Empleado> findByEstado(Boolean estado) {return empleadoRepository.findByEstado(estado);}
+
+    @Override
     public Empleado addEmpleado(Empleado empleado) {
         return empleadoRepository.save(empleado);
     }
