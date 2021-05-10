@@ -9,4 +9,5 @@ import java.util.Set;
 @Repository
 public interface RegistrosRepository extends CrudRepository<Registros, Long> {
     Set<Registros> findAll();
+    Set<Registros> findByCodRegistro(int codRegistro);
 }

@@ -1,8 +1,6 @@
 package com.sanvalero.nacho.gestionfichajes.controller;
 
-import com.sanvalero.nacho.gestionfichajes.domain.Dispositivos;
 import com.sanvalero.nacho.gestionfichajes.domain.Empleado;
-import com.sanvalero.nacho.gestionfichajes.exception.DispositivosNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.exception.EmpleadoNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.service.EmpleadoService;
 import org.slf4j.Logger;
@@ -59,6 +57,16 @@ public class EmpleadoController {
         return new ResponseEntity<>(empleados, HttpStatus.OK);
     }
 
+    //Listado de empleados por estado
+    @GetMapping(value = "/empleados/{estado}", produces = "application/json")
+    public ResponseEntity<Set<Empleado>> getEmpleadoEst(@RequestParam(value = "activo", defaultValue = "") Boolean estado) {
+        logger.info("inicio obtención de empleados por estado");
+        Set<Empleado> empleados= null;
+        empleados=empleadoService.findByEstado(estado);
+        logger.info("fin listado empleados por estado");
+        return new ResponseEntity<>(empleados, HttpStatus.OK);
+    }
+
     //Añadir un empleado
     @PostMapping(value = "/empleado", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Empleado> addEmpleado(@RequestBody Empleado empleado) {
@@ -73,7 +81,7 @@ public class EmpleadoController {
         return new ResponseEntity<>(empleado, HttpStatus.OK);
     }
 
-    //Eliminar un dispositivo
+    //Eliminar un empleado
     @DeleteMapping(value = "/empleado/{id}", produces = "application/json")
     public ResponseEntity<Response> deleteEmpleado(@PathVariable long idEmpleado) {
         empleadoService.deleteEmpleado(idEmpleado);
