@@ -1,12 +1,9 @@
 package com.sanvalero.nacho.gestionfichajes.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
