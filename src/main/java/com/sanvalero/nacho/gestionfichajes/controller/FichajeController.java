@@ -1,6 +1,5 @@
 package com.sanvalero.nacho.gestionfichajes.controller;
 
-import com.sanvalero.nacho.gestionfichajes.domain.Empleado;
 import com.sanvalero.nacho.gestionfichajes.domain.Fichaje;
 import com.sanvalero.nacho.gestionfichajes.exception.FichajeNotFoundException;
 import com.sanvalero.nacho.gestionfichajes.service.FichajeService;
