@@ -36,7 +36,7 @@ public class EmpleadoController {
 
     //Listado de empleados por id
     @GetMapping(value = "/empleados/{id}", produces = "application/json")
-    public ResponseEntity<Empleado> getEmpleado(@PathVariable long idEmpleado) {
+    public ResponseEntity<Empleado> getEmpleadoId(@PathVariable long idEmpleado) {
         Empleado empleado = empleadoService.findById(idEmpleado)
                 .orElseThrow(() -> new EmpleadoNotFoundException(idEmpleado));
 

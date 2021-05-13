@@ -22,10 +22,10 @@ public class RegistrosController {
 
     //Listado de registros por código de registro
     @GetMapping(value = "/registros", produces = "application/json")
-    public ResponseEntity<Set<Registros>> getRegistroCod(@RequestParam(value = "codigoRegistro", defaultValue = "") int codigoRegistro) {
+    public ResponseEntity<Set<Registros>> getRegistros(@RequestParam(value = "codigoRegistro", defaultValue = "") Integer codigoRegistro) {
         logger.info("inicio obtención de registros");
         Set<Registros> registros= null;
-        if (codigoRegistro>0)
+        if (codigoRegistro==null)
             registros = registrosService.findByCodRegistro(codigoRegistro);
         else
             registros=registrosService.findAll();
@@ -37,7 +37,7 @@ public class RegistrosController {
 
     //Listado de registros por id
     @GetMapping(value = "/registros/{id}", produces = "application/json")
-    public ResponseEntity<Registros> getRegistros(@PathVariable long idRegistro) {
+    public ResponseEntity<Registros> getRegistrosId(@PathVariable long idRegistro) {
         Registros registros = registrosService.findById(idRegistro)
                 .orElseThrow(() -> new RegistrosNotFoundException(idRegistro));
 

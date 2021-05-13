@@ -35,7 +35,7 @@ public class DispositivosController {
 
     //Listado de dispositivos por id
     @GetMapping(value = "/dispositivos/{id}", produces = "application/json")
-    public ResponseEntity<Dispositivos> getDispositivo(@PathVariable long idDispositivo) {
+    public ResponseEntity<Dispositivos> getDispositivoId(@PathVariable long idDispositivo) {
         Dispositivos dispositivos = dispositivosService.findById(idDispositivo)
                 .orElseThrow(() -> new DispositivosNotFoundException(idDispositivo));
 
@@ -56,14 +56,14 @@ public class DispositivosController {
 
     //Añadir un dispositivo
     @PostMapping(value = "/dispositivos", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Dispositivos> addProduct(@RequestBody Dispositivos dispositivos) {
+    public ResponseEntity<Dispositivos> addDispositivo(@RequestBody Dispositivos dispositivos) {
         Dispositivos dispositivoadd = dispositivosService.addDispositivo(dispositivos);
         return new ResponseEntity<>(dispositivoadd, HttpStatus.CREATED);
     }
 
     //Modificar un dispositivo
     @PutMapping(value = "/dispositivos/{id}", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Dispositivos> modifyProduct(@PathVariable long idDispositivo, @RequestBody Dispositivos nuevoDispositivo) {
+    public ResponseEntity<Dispositivos> modifyDispositivo(@PathVariable long idDispositivo, @RequestBody Dispositivos nuevoDispositivo) {
         Dispositivos dispositivo = dispositivosService.modifyDispositivo(idDispositivo,nuevoDispositivo);
         return new ResponseEntity<>(dispositivo, HttpStatus.OK);
     }

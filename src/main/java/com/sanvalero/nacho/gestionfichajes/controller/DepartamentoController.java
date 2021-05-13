@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -48,21 +47,21 @@ public class DepartamentoController {
 
     //Añadir un departamento
     @PostMapping(value = "/departamentos", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Departamento> addProduct(@RequestBody Departamento departamento) {
+    public ResponseEntity<Departamento> addDepartamento(@RequestBody Departamento departamento) {
         Departamento departamentoadd = departamentoService.addDepartamento(departamento);
         return new ResponseEntity<>(departamentoadd, HttpStatus.CREATED);
     }
 
     //Modificar un departamento
     @PutMapping(value = "/departamentos/{id}", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Departamento> modifyProduct(@PathVariable long idDepartamento, @RequestBody Departamento nuevoDepartamento) {
+    public ResponseEntity<Departamento> modifyDepartamento(@PathVariable long idDepartamento, @RequestBody Departamento nuevoDepartamento) {
         Departamento departamento = departamentoService.modifyDepartamento(idDepartamento,nuevoDepartamento);
         return new ResponseEntity<>(departamento, HttpStatus.OK);
     }
 
     //Eliminar un departamento
     @DeleteMapping(value = "/departamentos/{id}", produces = "application/json")
-    public ResponseEntity<Response> deleteProduct(@PathVariable long idDepartamento) {
+    public ResponseEntity<Response> deleteDepartamento(@PathVariable long idDepartamento) {
         departamentoService.deleteDepartamento(idDepartamento);
         return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
     }
