@@ -1,8 +1,6 @@
 package com.sanvalero.nacho.gestionfichajes.service;
 
 import com.sanvalero.nacho.gestionfichajes.domain.Departamento;
-import com.sanvalero.nacho.gestionfichajes.domain.dto.DepartamentoDTO;
-
 import java.util.Optional;
 import java.util.Set;
 

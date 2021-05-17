@@ -8,6 +8,6 @@ public class DispositivosNotFoundException extends RuntimeException{
     }
 
     public DispositivosNotFoundException(long idDispositivo) {
-        super("Dispositivo not found: " + idDispositivo);
+        super("Dispositivo no encontrado: " + idDispositivo);
     }
 }

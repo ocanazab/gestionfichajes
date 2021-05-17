@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Fichaje {
+public class FichajeDTO {
 
     private List<String> listaFichajes;
 

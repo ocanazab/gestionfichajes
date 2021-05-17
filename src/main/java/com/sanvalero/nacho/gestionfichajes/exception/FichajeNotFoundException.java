@@ -10,6 +10,6 @@ public class FichajeNotFoundException extends RuntimeException{
     }
 
     public FichajeNotFoundException(long id) {
-        super("Fichaje not found: " + id);
+        super("Fichaje not encontrado: " + id);
     }
 }

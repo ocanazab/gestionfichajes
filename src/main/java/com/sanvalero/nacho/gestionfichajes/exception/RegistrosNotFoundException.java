@@ -10,6 +10,6 @@ public class RegistrosNotFoundException extends RuntimeException{
     }
 
     public RegistrosNotFoundException(long id) {
-        super("Registro not found: " + id);
+        super("Registro no encontrado: " + id);
     }
 }

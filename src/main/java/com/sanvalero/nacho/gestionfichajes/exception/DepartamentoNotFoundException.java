@@ -8,6 +8,6 @@ public class DepartamentoNotFoundException extends RuntimeException{
     }
 
     public DepartamentoNotFoundException(long id) {
-        super("Empleado not found: " + id);
+        super("Departamento no encontrado: " + id);
     }
 }
