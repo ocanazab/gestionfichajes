@@ -1,14 +1,16 @@
 package com.sanvalero.nacho.gestionfichajes.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "departamento")
 public class Departamento {
 
@@ -19,7 +21,8 @@ public class Departamento {
 
     //Un departamento puede tener varios empleados, pero un empleado solo pertenece a un departamento.
     @OneToMany( targetEntity=Empleado.class )
-    private List listaEmpleados;
+    @JoinColumn(name="idDepartamento")
+
 
     //Columnas de la tabla
     @Column

@@ -17,7 +17,7 @@ public class Empleado {
 
     //Un empleado registra un fichaje y un fichaje pertenece a un empleado.
     @OneToMany( targetEntity=Fichaje.class )
-    private List listaEmpleados;
+    @JoinColumn(name="idEmpleado")
 
     //Columnas de la tabla
     @Column

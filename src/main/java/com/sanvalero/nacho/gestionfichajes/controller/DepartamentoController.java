@@ -38,7 +38,7 @@ public class DepartamentoController {
 
     //Listado de departamentos por id
     @GetMapping(value = "/departamentos/{id}", produces = "application/json")
-    public ResponseEntity<Departamento> getDepartamento(@PathVariable long idDepartamento) {
+    public ResponseEntity<Departamento> getDepid(@PathVariable long idDepartamento) {
         Departamento departamento = departamentoService.findById(idDepartamento)
                 .orElseThrow(() -> new DepartamentoNotFoundException(idDepartamento));
 

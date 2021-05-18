@@ -16,7 +16,7 @@ public class Registros {
 
     //Un tipo de registro pertenece a varios fichajes. Pero un fichaje solo puede tener un tipo de registro.
     @OneToMany( targetEntity=Fichaje.class )
-    private List listaRegistros;
+    @JoinColumn(name="idRegistro")
 
     //Columnas de la tabla
     @Column

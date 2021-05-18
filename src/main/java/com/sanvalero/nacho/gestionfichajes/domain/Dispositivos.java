@@ -18,7 +18,7 @@ public class Dispositivos {
 
     //Un dispositivo pertenece a varios fichajes. Pero un fichaje solo puede pertenecer a un dispositivo.
     @OneToMany( targetEntity=Fichaje.class )
-    private List listaDispositivos;
+    @JoinColumn(name="idDispositivo")
 
     //Columnas de la tabla
     @Column
