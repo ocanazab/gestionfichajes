@@ -22,13 +22,6 @@ public class RegistrosServiceImpl implements RegistrosService{
     }
 
     @Override
-    public Optional<Registros> findById(long idRegistro) {
-        return registrosRepository.findById(idRegistro);
-    }
-
-    @Override
-    public Set<Registros> findByCodRegistro(int codRegistro) {return registrosRepository.findByCodRegistro(codRegistro);}
-    @Override
     public Registros addRegistro(Registros registro) {
         return registrosRepository.save(registro);
     }
@@ -37,11 +30,11 @@ public class RegistrosServiceImpl implements RegistrosService{
     public Registros modifyRegistro(long idRegistro, Registros nuevoRegistro) {
         Registros registros = registrosRepository.findById(idRegistro)
                 .orElseThrow(() -> new EmpleadoNotFoundException(idRegistro));
-        nuevoRegistro.setCodigoRegistro(nuevoRegistro.getCodigoRegistro());
-        nuevoRegistro.setDescripcion(nuevoRegistro.getDescripcion());
-        nuevoRegistro.setObservaciones(nuevoRegistro.getObservaciones());
-        nuevoRegistro.setFechaCreacion(nuevoRegistro.getFechaCreacion());
-        nuevoRegistro.setTipoDispositivo(nuevoRegistro.getTipoDispositivo());
+        nuevoRegistro.setCodigoRegistro(registros.getCodigoRegistro());
+        nuevoRegistro.setDescripcion(registros.getDescripcion());
+        nuevoRegistro.setObservaciones(registros.getObservaciones());
+        nuevoRegistro.setFechaCreacion(registros.getFechaCreacion());
+        nuevoRegistro.setTipoDispositivo(registros.getTipoDispositivo());
         return registrosRepository.save(nuevoRegistro);
     }
 

@@ -10,6 +10,4 @@ import java.util.Set;
 @Repository
 public interface DispositivosRepository extends CrudRepository<Dispositivos, Long> {
     Set<Dispositivos> findAll();
-    Set<Dispositivos> findbyUbicacion(String ubicacion);
-    Set<Dispositivos> findbyNombre(String nombre);
 }

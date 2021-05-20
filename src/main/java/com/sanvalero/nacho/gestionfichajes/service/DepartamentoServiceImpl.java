@@ -21,14 +21,6 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     }
 
     @Override
-    public Optional<Departamento> findById(long id) {
-        return departamentoRepository.findById(id);
-    }
-
-    @Override
-    public Set<Departamento> findByName(String name) {return departamentoRepository.findbyName(name);}
-
-    @Override
     public Departamento addDepartamento(Departamento departamento) {
         return departamentoRepository.save(departamento);
     }
@@ -37,11 +29,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     public Departamento modifyDepartamento(long id, Departamento nuevoDepartamento) {
         Departamento departamento = departamentoRepository.findById(id)
                 .orElseThrow(() -> new DepartamentoNotFoundException(id));
-        nuevoDepartamento.setNombre(nuevoDepartamento.getNombre());
-        nuevoDepartamento.setActivo(nuevoDepartamento.getActivo());
-        nuevoDepartamento.setDescripcion(nuevoDepartamento.getDescripcion());
-        nuevoDepartamento.setEmpresa(nuevoDepartamento.getEmpresa());
-        nuevoDepartamento.setFechaCreacion(nuevoDepartamento.getFechaCreacion());
+        nuevoDepartamento.setNombre(departamento.getNombre());
+        nuevoDepartamento.setActivo(departamento.getActivo());
+        nuevoDepartamento.setDescripcion(departamento.getDescripcion());
+        nuevoDepartamento.setEmpresa(departamento.getEmpresa());
+        nuevoDepartamento.setFechaCreacion(departamento.getFechaCreacion());
         return departamentoRepository.save(nuevoDepartamento);
     }
 

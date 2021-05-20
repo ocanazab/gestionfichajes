@@ -20,53 +20,6 @@ public class EmpleadoController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    //Listado de empleados por nombre
-    @GetMapping(value = "/empleados", produces = "application/json")
-    public ResponseEntity<Set<Empleado>> getEmpleado(@RequestParam(value = "nombre", defaultValue = "") String nombreemp) {
-        logger.info("inicio obtención de empleados");
-        Set<Empleado> empleados= null;
-        if (nombreemp.isEmpty())
-            empleados = empleadoService.findAll();
-        else
-            empleados = empleadoService.findByNombre(nombreemp);
-
-        logger.info("fin listado empleados");
-        return new ResponseEntity<>(empleados, HttpStatus.OK);
-    }
-
-    //Listado de empleados por id
-    @GetMapping(value = "/empleados/{id}", produces = "application/json")
-    public ResponseEntity<Empleado> getEmpleadoId(@PathVariable long idEmpleado) {
-        Empleado empleado = empleadoService.findById(idEmpleado)
-                .orElseThrow(() -> new EmpleadoNotFoundException(idEmpleado));
-
-        return new ResponseEntity<>(empleado, HttpStatus.OK);
-    }
-
-    //Listado de empleados por departamento
-    @GetMapping(value = "/empleados/{idDepartamento}", produces = "application/json")
-    public ResponseEntity<Set<Empleado>> getEmpleadoDep(@RequestParam(value = "idDepartamento", defaultValue = "") String nombredep) {
-        logger.info("inicio obtención de empleados por departamento");
-        Set<Empleado> empleados= null;
-        if (nombredep.isEmpty())
-            return new ResponseEntity<>(empleados, HttpStatus.BAD_REQUEST);
-        else
-            empleados = empleadoService.findByDepartamento(nombredep);
-
-        logger.info("fin listado empleados por departamento");
-        return new ResponseEntity<>(empleados, HttpStatus.OK);
-    }
-
-    //Listado de empleados por estado
-    @GetMapping(value = "/empleados/{estado}", produces = "application/json")
-    public ResponseEntity<Set<Empleado>> getEmpleadoEst(@RequestParam(value = "activo", defaultValue = "") Boolean estado) {
-        logger.info("inicio obtención de empleados por estado");
-        Set<Empleado> empleados= null;
-        empleados=empleadoService.findByEstado(estado);
-        logger.info("fin listado empleados por estado");
-        return new ResponseEntity<>(empleados, HttpStatus.OK);
-    }
-
     //Añadir un empleado
     @PostMapping(value = "/empleado", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Empleado> addEmpleado(@RequestBody Empleado empleado) {

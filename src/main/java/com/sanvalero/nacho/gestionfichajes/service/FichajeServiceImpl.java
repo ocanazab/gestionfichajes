@@ -19,21 +19,6 @@ public class FichajeServiceImpl implements FichajeService{
     public Set<Fichaje> findAll() { return fichajeRepository.findAll(); }
 
     @Override
-    public Set<Fichaje> findbyEmpleado(int empleado) { return fichajeRepository.findbyEmpleado(empleado); }
-
-    @Override
-    public Set<Fichaje> findbyDepartamento(int departamento) { return fichajeRepository.findbyDepartamento(departamento); }
-
-    @Override
-    public Set<Fichaje> findbyRegistro(int registro) { return fichajeRepository.findbyRegistro(registro); }
-
-    @Override
-    public Set<Fichaje> findbyEmpleadoDepartamento(int empleado, int departamento) { return fichajeRepository.findbyEmpleadoDepartamento(empleado,departamento); }
-
-    @Override
-    public Set<Fichaje> findbyEmplDepFecha(int empleado, int departamento, LocalDate fecha) { return fichajeRepository.findbyEmplDepFecha(empleado,departamento,fecha); }
-
-    @Override
     public Fichaje addFichaje(Fichaje fichaje) { return fichajeRepository.save(fichaje); }
 
     @Override
@@ -41,12 +26,11 @@ public class FichajeServiceImpl implements FichajeService{
 
         Fichaje fichaje = fichajeRepository.findById(idFichaje)
                 .orElseThrow(() -> new FichajeNotFoundException(idFichaje));
-        nuevoFichaje.setIdEmpleado(nuevoFichaje.getIdEmpleado());
-        nuevoFichaje.setIdDepartamento(nuevoFichaje.getIdDepartamento());
-        nuevoFichaje.setIdDispositivo(nuevoFichaje.getIdDispositivo());
-        nuevoFichaje.setIdRegistro(nuevoFichaje.getIdRegistro());
-        nuevoFichaje.setFecha(nuevoFichaje.getFecha());
-        nuevoFichaje.setBorrado(nuevoFichaje.getBorrado());
+        nuevoFichaje.setIdEmpleado(fichaje.getIdEmpleado());
+        nuevoFichaje.setIdDispositivo(fichaje.getIdDispositivo());
+        nuevoFichaje.setIdRegistro(fichaje.getIdRegistro());
+        nuevoFichaje.setFecha(fichaje.getFecha());
+        nuevoFichaje.setBorrado(fichaje.getBorrado());
 
         return fichajeRepository.save(nuevoFichaje);
     }

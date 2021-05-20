@@ -1,11 +1,15 @@
 package com.sanvalero.nacho.gestionfichajes.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="fichaje")
 public class Fichaje {
 
@@ -17,8 +21,6 @@ public class Fichaje {
     //Columnas de la tabla
     @Column
     private int idEmpleado;
-    @Column
-    private int idDepartamento;
     @Column
     private int idDispositivo;
     @Column

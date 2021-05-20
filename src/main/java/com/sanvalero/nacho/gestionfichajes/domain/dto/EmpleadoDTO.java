@@ -17,5 +17,4 @@ public class EmpleadoDTO {
     private int telefono;
     private boolean activo;
     private LocalDate fechaAlta;
-    private long idDepartamento;
 }

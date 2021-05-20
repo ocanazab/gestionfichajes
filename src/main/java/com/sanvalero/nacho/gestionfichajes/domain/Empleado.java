@@ -15,10 +15,6 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idEmpleado;
 
-    //Un empleado registra un fichaje y un fichaje pertenece a un empleado.
-    @OneToMany( targetEntity=Fichaje.class )
-    @JoinColumn(name="idEmpleado")
-
     //Columnas de la tabla
     @Column
     private String nombre;
@@ -30,7 +26,12 @@ public class Empleado {
     private Boolean activo;
     @Column
     private LocalDate fechaAlta;
-    @Column
-    private int idDepartamento;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "departamento",
+            referencedColumnName = "idDepartamento"
+    )
+    private Departamento departamento;
 
 }

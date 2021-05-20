@@ -20,30 +20,6 @@ public class RegistrosController {
     private RegistrosService registrosService;
 
 
-    //Listado de registros por código de registro
-    @GetMapping(value = "/registros", produces = "application/json")
-    public ResponseEntity<Set<Registros>> getRegistros(@RequestParam(value = "codigoRegistro", defaultValue = "") Integer codigoRegistro) {
-        logger.info("inicio obtención de registros");
-        Set<Registros> registros= null;
-        if (codigoRegistro==null)
-            registros = registrosService.findByCodRegistro(codigoRegistro);
-        else
-            registros=registrosService.findAll();
-
-
-        logger.info("fin listado registros por codigo de registro");
-        return new ResponseEntity<>(registros, HttpStatus.OK);
-    }
-
-    //Listado de registros por id
-    @GetMapping(value = "/registros/{id}", produces = "application/json")
-    public ResponseEntity<Registros> getRegistrosId(@PathVariable long idRegistro) {
-        Registros registros = registrosService.findById(idRegistro)
-                .orElseThrow(() -> new RegistrosNotFoundException(idRegistro));
-
-        return new ResponseEntity<>(registros, HttpStatus.OK);
-    }
-
     //Añadir un registro
     @PostMapping(value = "/registro", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Registros> addRegistro(@RequestBody Registros registros) {

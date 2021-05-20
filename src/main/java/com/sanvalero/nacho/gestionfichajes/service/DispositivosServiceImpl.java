@@ -22,19 +22,6 @@ public class DispositivosServiceImpl implements DispositivosService {
     }
 
     @Override
-    public Optional<Dispositivos> findById(long idDispositivo) {
-        return dispositivosRepository.findById(idDispositivo);
-    }
-
-    @Override
-    public Set<Dispositivos> findbyNombre(String nombre){
-        return dispositivosRepository.findbyNombre(nombre);
-    }
-
-    @Override
-    public Set<Dispositivos> findbyUbicacion(String ubicacion){ return dispositivosRepository.findbyUbicacion(ubicacion);}
-
-    @Override
     public Dispositivos addDispositivo(Dispositivos dispositivo) {
         return dispositivosRepository.save(dispositivo);
     }
@@ -43,12 +30,12 @@ public class DispositivosServiceImpl implements DispositivosService {
     public Dispositivos modifyDispositivo(long idDispositivo, Dispositivos nuevoDispositivo) {
         Dispositivos dispositivo = dispositivosRepository.findById(idDispositivo)
                 .orElseThrow(() -> new DispositivosNotFoundException(idDispositivo));
-        nuevoDispositivo.setNombre(nuevoDispositivo.getNombre());
-        nuevoDispositivo.setActivo(nuevoDispositivo.getActivo());
-        nuevoDispositivo.setComentarios(nuevoDispositivo.getComentarios());
-        nuevoDispositivo.setFechaAlta(nuevoDispositivo.getFechaAlta());
-        nuevoDispositivo.setUbicacion(nuevoDispositivo.getUbicacion());
-        nuevoDispositivo.setComentarios(nuevoDispositivo.getComentarios());
+        nuevoDispositivo.setNombre(dispositivo.getNombre());
+        nuevoDispositivo.setActivo(dispositivo.getActivo());
+        nuevoDispositivo.setComentarios(dispositivo.getComentarios());
+        nuevoDispositivo.setFechaAlta(dispositivo.getFechaAlta());
+        nuevoDispositivo.setUbicacion(dispositivo.getUbicacion());
+        nuevoDispositivo.setComentarios(dispositivo.getComentarios());
         return dispositivosRepository.save(nuevoDispositivo);
     }
 

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,11 +17,6 @@ public class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idDepartamento;
-
-    //Un departamento puede tener varios empleados, pero un empleado solo pertenece a un departamento.
-    @OneToMany( targetEntity=Empleado.class )
-    @JoinColumn(name="idDepartamento")
-
 
     //Columnas de la tabla
     @Column

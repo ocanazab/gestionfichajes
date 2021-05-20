@@ -21,20 +21,6 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     }
 
     @Override
-    public Optional<Empleado> findById(long idEmpleado) {
-        return empleadoRepository.findById(idEmpleado);
-    }
-
-    @Override
-    public Set<Empleado> findByDepartamento(String departamento) {return empleadoRepository.findByDepartamento(departamento); }
-
-    @Override
-    public Set<Empleado> findByNombre(String nombre) {return empleadoRepository.findByNombre(nombre);}
-
-    @Override
-    public Set<Empleado> findByEstado(Boolean estado) {return empleadoRepository.findByEstado(estado);}
-
-    @Override
     public Empleado addEmpleado(Empleado empleado) {
         return empleadoRepository.save(empleado);
     }
@@ -43,14 +29,13 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     public Empleado modifyEmpleado(long idEmpleado, Empleado nuevoEmpleado) {
         Empleado empleado = empleadoRepository.findById(idEmpleado)
                 .orElseThrow(() -> new EmpleadoNotFoundException(idEmpleado));
-        nuevoEmpleado.setIdDepartamento(nuevoEmpleado.getIdDepartamento());
-        nuevoEmpleado.setActivo(nuevoEmpleado.getActivo());
-        nuevoEmpleado.setNombre(nuevoEmpleado.getNombre());
-        nuevoEmpleado.setApellidos(nuevoEmpleado.getApellidos());
-        nuevoEmpleado.setTelefono(nuevoEmpleado.getTelefono());
-        nuevoEmpleado.setFechaAlta(nuevoEmpleado.getFechaAlta());
-        nuevoEmpleado.setIdDepartamento(nuevoEmpleado.getIdDepartamento());
-        nuevoEmpleado.setActivo(nuevoEmpleado.getActivo());
+        nuevoEmpleado.setActivo(empleado.getActivo());
+        nuevoEmpleado.setNombre(empleado.getNombre());
+        nuevoEmpleado.setApellidos(empleado.getApellidos());
+        nuevoEmpleado.setTelefono(empleado.getTelefono());
+        nuevoEmpleado.setFechaAlta(empleado.getFechaAlta());
+        nuevoEmpleado.setActivo(empleado.getActivo());
+        nuevoEmpleado.setDepartamento(empleado.getDepartamento());
         return empleadoRepository.save(nuevoEmpleado);
     }
 

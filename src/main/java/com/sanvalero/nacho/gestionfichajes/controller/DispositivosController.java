@@ -19,41 +19,6 @@ public class DispositivosController {
     @Autowired
     private DispositivosService dispositivosService;
 
-    //Listado de dispositivos por nombre
-    @GetMapping(value = "/dispositivos", produces = "application/json")
-    public ResponseEntity<Set<Dispositivos>> getDispositivo(@RequestParam(value = "nombre", defaultValue = "") String nombredisp) {
-        logger.info("inicio obtención de departamentos");
-        Set<Dispositivos> dispositivos= null;
-        if (nombredisp.isEmpty())
-            dispositivos = dispositivosService.findAll();
-        else
-            dispositivos = dispositivosService.findbyNombre(nombredisp);
-
-        logger.info("fin listado dispositivos");
-        return new ResponseEntity<>(dispositivos, HttpStatus.OK);
-    }
-
-    //Listado de dispositivos por id
-    @GetMapping(value = "/dispositivos/{id}", produces = "application/json")
-    public ResponseEntity<Dispositivos> getDispositivoId(@PathVariable long idDispositivo) {
-        Dispositivos dispositivos = dispositivosService.findById(idDispositivo)
-                .orElseThrow(() -> new DispositivosNotFoundException(idDispositivo));
-
-        return new ResponseEntity<>(dispositivos, HttpStatus.OK);
-    }
-
-
-    @GetMapping(value = "/dispositivos/{ubicacion}", produces = "application/json")
-    public ResponseEntity<Set<Dispositivos>> getDispositivoUbic(@RequestParam(value = "ubicacion", defaultValue = "") String ubicacion) {
-        Set<Dispositivos> dispositivos= null;
-        if (ubicacion.isEmpty())
-            return new ResponseEntity<>(dispositivos, HttpStatus.BAD_REQUEST);
-        else
-            dispositivos = dispositivosService.findbyUbicacion(ubicacion);
-            return new ResponseEntity<>(dispositivos, HttpStatus.OK);
-
-    }
-
     //Añadir un dispositivo
     @PostMapping(value = "/dispositivos", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Dispositivos> addDispositivo(@RequestBody Dispositivos dispositivos) {

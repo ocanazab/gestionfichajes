@@ -22,29 +22,6 @@ public class DepartamentoController {
     private DepartamentoService departamentoService;
 
 
-    //Listado de departamentos por nombre
-    @GetMapping(value = "/departamentos", produces = "application/json")
-    public ResponseEntity<Set<Departamento>> getDepartamento(@RequestParam(value = "nombre", defaultValue = "") String nombredep) {
-        logger.info("inicio obtención de departamentos");
-        Set<Departamento> departamentos = null;
-        if (nombredep.isEmpty())
-            departamentos = departamentoService.findAll();
-        else
-            departamentos = departamentoService.findByName(nombredep);
-
-        logger.info("fin listado departamentos");
-        return new ResponseEntity<>(departamentos, HttpStatus.OK);
-    }
-
-    //Listado de departamentos por id
-    @GetMapping(value = "/departamentos/{id}", produces = "application/json")
-    public ResponseEntity<Departamento> getDepid(@PathVariable long idDepartamento) {
-        Departamento departamento = departamentoService.findById(idDepartamento)
-                .orElseThrow(() -> new DepartamentoNotFoundException(idDepartamento));
-
-        return new ResponseEntity<>(departamento, HttpStatus.OK);
-    }
-
     //Añadir un departamento
     @PostMapping(value = "/departamentos", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Departamento> addDepartamento(@RequestBody Departamento departamento) {
